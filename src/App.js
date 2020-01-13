@@ -12,14 +12,21 @@ function getDiceNumber(){
 function GameResult(props){
   switch (props.playerNumber - props.enemyNumber){
     case 1:
-      return <p> あなたの勝ちです </p>;
+      return <p class="Game"> あなたの勝ちです </p>;
       break;
     case -1:
-      return <p> わたしの勝ちです </p>;
+      return <p class="Game"> わたしの勝ちです </p>;
       break;
     default:
-      return <p> おあいこです </p>;
+      return <p class="Game"> おあいこです </p>;
   }
+}
+
+function PlayButton(props){
+  return(
+    <button onClick={() => {props.setPlayerNumber(props.number);props.setEnemyNumber(getDiceNumber)}}>
+      {props.number}
+    </button>);
 }
 
 function App() {
@@ -30,11 +37,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={() => {setPlayerNumber(playerNumber + 1);setEnemyNumber(getDiceNumber)}}>
-          あなたの手は{playerNumber}です。
-        </button>
-        <p>
-          私の手は{enemyNumber}です。
+        <ul>
+          {[1,2,3,4,5,6].map((n) => <PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber} />)}
+        </ul>
+          <p  class="Game">
+          あなたの手は{playerNumber}です。<br />
+          私の手は{enemyNumber}です。<br />
+          したがって,
         </p>
         <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
       </header>

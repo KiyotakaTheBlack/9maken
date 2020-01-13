@@ -1,23 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState }  from 'react';
 import './App.css';
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function getDiceNumber(){
+  return getRandomInt(5) +1;
+}
+
 function App() {
+  
+  const [playerNumber, setPlayerNumber] = useState(1);
+  const [enemyNumber, setEnemyNumber] = useState(getDiceNumber);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <button onClick={() => {setPlayerNumber(playerNumber + 1);setEnemyNumber(getDiceNumber)}}>
+          あなたの手は{playerNumber}です。
+        </button>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          私の手は{enemyNumber}です。
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

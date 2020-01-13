@@ -9,6 +9,19 @@ function getDiceNumber(){
   return getRandomInt(5) +1;
 }
 
+function GameResult(props){
+  switch (props.playerNumber - props.enemyNumber){
+    case 1:
+      return <p> あなたの勝ちです </p>;
+      break;
+    case -1:
+      return <p> わたしの勝ちです </p>;
+      break;
+    default:
+      return <p> おあいこです </p>;
+  }
+}
+
 function App() {
   
   const [playerNumber, setPlayerNumber] = useState(1);
@@ -23,6 +36,7 @@ function App() {
         <p>
           私の手は{enemyNumber}です。
         </p>
+        <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
       </header>
     </div>
   );

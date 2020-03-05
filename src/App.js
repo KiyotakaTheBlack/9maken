@@ -1,20 +1,23 @@
 import React, { useState }  from 'react';
 import './App.css';
+import Button from '@material-ui/core/Button';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
 function getDiceNumber(){
-  return getRandomInt(5) +1;
+  return getRandomInt(6) +1;
 }
 
 function GameResult(props){
   switch (props.playerNumber - props.enemyNumber){
     case 1:
+    case -5: //5は6対1用
       return <p class="Game"> あなたの勝ちです </p>;
       break;
     case -1:
+    case 5:
       return <p class="Game"> わたしの勝ちです </p>;
       break;
     default:
@@ -24,9 +27,9 @@ function GameResult(props){
 
 function PlayButton(props){
   return(
-    <button onClick={() => {props.setPlayerNumber(props.number);props.setEnemyNumber(getDiceNumber)}}>
+    <Button onClick={() => {props.setPlayerNumber(props.number);props.setEnemyNumber(getDiceNumber)}}>
       {props.number}
-    </button>);
+    </Button>);
 }
 
 function App() {

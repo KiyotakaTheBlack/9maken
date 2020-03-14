@@ -1,6 +1,8 @@
 import React, { useState }  from 'react';
-import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -14,14 +16,14 @@ function GameResult(props){
   switch (props.playerNumber - props.enemyNumber){
     case 1:
     case -5: //5は6対1用
-      return <p class="Game"> あなたの勝ちです </p>;
+      return <Typography variant="body1" align="center"> あなたの勝ちです </Typography>;
       break;
     case -1:
     case 5:
-      return <p class="Game"> わたしの勝ちです </p>;
+      return <Typography variant="body1" align="center"> わたしの勝ちです </Typography>;
       break;
     default:
-      return <p class="Game"> おあいこです </p>;
+      return <Typography variant="body1" align="center"> おあいこです </Typography>;
   }
 }
 
@@ -38,19 +40,24 @@ function App() {
   const [enemyNumber, setEnemyNumber] = useState(getDiceNumber);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <ul>
-          {[1,2,3,4,5,6].map((n) => <PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber} />)}
-        </ul>
-          <p  class="Game">
-          あなたの手は{playerNumber}です。<br />
-          私の手は{enemyNumber}です。<br />
-          したがって,
-        </p>
-        <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
-      </header>
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <div className="App">
+        <header className="App-header">
+          <Box align="center">
+            <ul>
+              {[1,2,3,4,5,6].map((n) => <PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber} />)}
+            </ul>
+            <Typography variant="body1" align="center">
+              あなたの手は{playerNumber}です。<br />
+              私の手は{enemyNumber}です。<br />
+              したがって,
+            </Typography>
+            <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
+          </Box>
+        </header>
+      </div>
+    </React.Fragment>
   );
 }
 

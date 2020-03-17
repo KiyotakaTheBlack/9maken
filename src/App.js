@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -41,19 +41,23 @@ function App() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <body>
-        <Box align="center">
-          <ul>
-            {[1,2,3,4,5,6].map((n) => <PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber} />)}
-          </ul>
-          <Typography variant="body1" align="center">
-            あなたの手は{playerNumber}です。<br />
-            私の手は{enemyNumber}です。<br />
-            したがって,
-          </Typography>
-          <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
-        </Box>
+    <CssBaseline />
+    <body>
+    <Grid container direction="column" xs="{12}" align="center" justify="center">
+    <Grid container item xs="{12}" align="center" justify="center">
+    {[1,2,3,4,5,6].map((n) => <Grid item xs="{2}"><PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber}/> </Grid>)}
+    </Grid>
+    <Grid item xs="{12}">
+      <Typography variant="body1" align="center">
+        あなたの手は{playerNumber}です。<br />
+        私の手は{enemyNumber}です。<br />
+        したがって,
+      </Typography>
+    </Grid>
+    <Grid item xs="{12}">
+      <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
+    </Grid>
+    </Grid>
       </body>
     </React.Fragment>
   );

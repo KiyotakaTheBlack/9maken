@@ -42,21 +42,19 @@ function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className="App">
-        <header className="App-header">
-          <Box align="center">
-            <ul>
-              {[1,2,3,4,5,6].map((n) => <PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber} />)}
-            </ul>
-            <Typography variant="body1" align="center">
-              あなたの手は{playerNumber}です。<br />
-              私の手は{enemyNumber}です。<br />
-              したがって,
-            </Typography>
-            <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
-          </Box>
-        </header>
-      </div>
+      <body>
+        <Box align="center">
+          <ul>
+            {[1,2,3,4,5,6].map((n) => <PlayButton number={n} setPlayerNumber={setPlayerNumber} setEnemyNumber={setEnemyNumber} />)}
+          </ul>
+          <Typography variant="body1" align="center">
+            あなたの手は{playerNumber}です。<br />
+            私の手は{enemyNumber}です。<br />
+            したがって,
+          </Typography>
+          <GameResult playerNumber={playerNumber} enemyNumber={enemyNumber} />
+        </Box>
+      </body>
     </React.Fragment>
   );
 }
